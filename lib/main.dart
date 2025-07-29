@@ -13,14 +13,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     // เมธอด build() ส่งคืนโครงสร้างต้นไม้วิดเจ็ตสำหรับวิดเจ็ตนี้
     return MaterialApp(
+      title: 'My Awesome App',
+      debugShowCheckedModeBanner: false, // ซ่อนแบนเนอร์ debug
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrangeAccent),
-        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        useMaterial3: true, // ใช้ Material Design เวอร์ชันล่าสุด
       ),
-      title: 'Flutter Demo',
-      home: const MyHomePage(),
-    );
+      home: const MyHomePage(), // วิดเจ็ตหน้าจอหลักของคุณ
+    ); // สร้าง MaterialApp ซึ่งเป็นวิดเจ็ตหลักของแอปพลิเคชัน
   }
+
+  // สร้าง MaterialApp ซึ่งเป็นวิดเจ็ตหลักของแอปพลิเคชัน
 }
 
 class MyHomePage extends StatelessWidget {
@@ -29,32 +32,40 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ให้โครงสร้างแอปพื้นฐาน
       appBar: AppBar(
-        title: const Text('Chapter 3 Lab'),
-        backgroundColor: Colors.teal,
+        title: const Text('Home Page'),
+        backgroundColor: Colors.blue, // ปรับแต่งสี AppBar
       ),
       body: Center(
-        // จัดกึ่งกลาง Container
+        // พื้นที่เนื้อหาหลัก
         child: Container(
-          // กล่อง
-          padding: const EdgeInsets.all(50.0),
+          padding: EdgeInsets.all(10.0),
           width: 300.0,
-          height: 200.0,
-          // color: Colors.amber, // สีพื้นหลัง
+          height: 150.0,
           decoration: BoxDecoration(
-            color: Colors.amber, // กำหนดสีพื้นหลังของ Container
-            borderRadius: BorderRadius.all(Radius.circular(30.0)), // กำหนดมุมโค้ง
+            color: Colors.amber,
+            borderRadius: BorderRadius.horizontal(
+              left: Radius.circular(20.0), // มุมโค้งด้านซ้าย
+              right: Radius.circular(20.0), // มุมโค้งด้านขวา
+            ),
           ),
-          child: const Text('Inside Container',
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.bold,
-            color: Colors.brown, // กำหนดสีข้อความ
+          child: Center(
+            child: Image.asset('assets/images/xp.jpg', // ใช้ Image.asset เพื่อโหลดรูปภาพจาก assets
+            width: 100,
+            height: 50,
+            fit: BoxFit.cover,
+            ),
           ),
-          ), // ข้อความภายใน Container
-          // Child และ Padding จะมาตรงนี้
         ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // การกระทำที่จะทำเมื่อกดปุ่ม
+          // ignore: avoid_print
+          print('FAB Pressed!');
+        },
+        child: const Icon(Icons.add), // ไอคอนสำหรับปุ่ม
       ),
     );
   }
